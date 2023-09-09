@@ -4,8 +4,8 @@ irq_setup: {
         sei
 
         lda #%01111111          //disable CIA timers
-        sta $dc0d
-        sta $dd0d
+        sta $DC0D
+        sta $DD0D
 
         lda #%000000001         //enable raster interrupts
         sta $D01A
