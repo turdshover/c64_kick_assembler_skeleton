@@ -3,7 +3,7 @@
 #import "equ.asm"
 
 clear_screen: {
-        ldx #$fa
+        ldx #$f9
 
     loop:
         lda CLR_CHAR
