@@ -37,19 +37,17 @@ irq_main: {
         lda $D012               //get current raster line
         cmp #$f9                //are we at line $f9?
         bne blue_border         //no, change to blue border
-        lda #$05                //yes, switch border back to green
-        sta $D020
+        ldx #$05                //yes, switch border back to green
         lda #$33                //change raster interrupt line back to $33
-        sta $D012
         jmp irq_done
 
     blue_border:
-        lda #$06                //change border to blue and
-        sta $D020               //draw blue until next interrupt
+        ldx #$06                //change border to blue
         lda #$f9                //change raster line to $f9
-        sta $D012
     
     irq_done:
+        stx $D020               //store new border color
+        sta $D012               //store new raster line
         asl $D019               //re-enble the interrupt
 
     leave:
