@@ -27,10 +27,8 @@ main:
     main_loop:
         lda $DC01                       //load keyboard row matrix
         cmp #$ef                        //check if spacebar is pressed
-        beq done                        //if so, break
-        jmp main_loop
-
-    done:
+        bne main_loop                   //if so, break
+        
         jsr restore_machine_state
         jsr $E544                       //kernal clear screen routine
         lda #$00
